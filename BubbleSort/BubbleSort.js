@@ -48,4 +48,27 @@ function bubbleSortv2(arr) {
     }
 }
 
+/**
+ * 冒泡排序优化v3
+ * 发现冒泡排序中如果上一次遍历时候，在到达len-1-i之前就
+ * 已经没有发生交换了，但循环依然继续。这里可以继续优化
+ * @param {Array} arr 
+ */
+function bubbleSortv3(arr) {
+    let len = arr.length ; //初始时,最后位置保持不变
+    let i = len - 1
+    while (i > 0) {
+        let lastswappedpos = 0; //每趟开始时,无记录交换
+        for (let j = 0; j < i; j++)
+            if (arr[j] > arr[j + 1]) {
+                lastswappedpos = j; //记录交换的位置
+                var tmp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = tmp;
+            }
+        i = lastswappedpos; //为下一趟排序作准备
+    }
+    return arr
+}
+
 module.exports = bubbleSort
