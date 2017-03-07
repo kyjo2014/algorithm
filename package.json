@@ -1,0 +1,27 @@
+{
+  "name": "algorithm",
+  "version": "1.0.0",
+  "description": "algorithm record",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyjo2014/algorithm.git"
+  },
+  "keywords": [
+    "algorithm"
+  ],
+  "author": "kyjo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kyjo2014/algorithm/issues"
+  },
+  "homepage": "https://github.com/kyjo2014/algorithm#readme",
+  "devDependencies": {
+    "karma": "^1.5.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.1.0"
+  }
+}
