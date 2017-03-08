@@ -1,7 +1,7 @@
 /**
  * 选择排序：从每次循环中获得数组中最小元素的下标，
  * 再交换未排序区的第一个元素和最小元素两个的位置
- * @param {any} arr 
+ * @param {Array} arr 
  * @returns 
  */
 function selectSort(arr) {
