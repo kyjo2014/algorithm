@@ -42,3 +42,35 @@ function insertionSortv2(arr) {
     }
     return arr
 }
+
+
+
+/**
+ * 插入排序的时候使用二分查找的
+ * 方式查找插入位置
+ * 
+ * @param {Array} arr 
+ */
+function insertionSortv3(arr) {
+    let len = arr.length
+    for (let i = 0; i < len; i++) {
+        let key = arr[i]
+        let left = 0
+        let right = i - 1
+        //使用二分查找法
+        while (left <= right) {
+            let middle = (left + right) >> 1
+            if (key < arr[middle]) {
+                right = middle - 1
+            } else {
+                left = middle + 1
+            }
+
+        }
+        for (let j = i - 1; j >= left; j--) {
+            arr[j + 1] = arr[j]
+        }
+        arr[left] = key
+    }
+    return arr
+}
