@@ -2,7 +2,7 @@
  * 希尔排序
  * 目前版本是按照数组长度对数组分成5组然后每组内分别进行插入排序
  * 然后减少成两组，最后减少至一组
- * @param {any} arr 
+ * @param {Array} arr 
  * @returns 
  */
 function shellSort(arr) {
