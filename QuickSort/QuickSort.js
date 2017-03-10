@@ -27,3 +27,9 @@ function quickSort(arr, left, right) {
         return arr
     }
 }
+
+
+
+function quickSortv2(arr, left, right) {
+    
+}
