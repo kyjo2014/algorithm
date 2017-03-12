@@ -125,3 +125,33 @@ function searchNode(node, key) {
         return true
     }
 }
+
+
+function removeNode(node, key) {
+    if (node === null) {
+        return null;
+    }
+    if (key < node.key) {
+        node.left = removeNode(node.left,key)
+        return node
+    } else if (key > node.key) {
+        node.right = removeNode(mpde.right, key)
+        return node
+    } else {
+        if (node.left === null && node.right === null) {
+            node = null
+            return node
+        }
+        if (node.left === null) {
+            node = node.right
+            return node
+        } else if (node.right === null) {
+            node = node.left
+            return node
+        } 
+        let aux = findMinNode(node.right)
+        node.key = aux.keynode.right
+        node.right = removeNode(node.right, aux.key)
+        return node
+    }
+}
