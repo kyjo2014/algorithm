@@ -16,28 +16,28 @@ class BinarySearchTree {
     insert(key) {
         let newNode = new Node(key)
         if (this.root === null) {
-            root = newNode
+            this.root = newNode
         } else {
-            insertNode(root, newNode)
+            insertNode(this.root, newNode)
         }
     }
     search(key) {
-
+        return searchNode(this.root,key)
     }
     inOrderTraverse(cb) {
         inOrderTraverseNode(this.root, cb)
     }
     preOrderTraverse(callback) {
-        preOrderTraverseNode(root, callback)
+        preOrderTraverseNode(this.root, callback)
     }
     postOrderTraverse() {
-        postOrderTraverseNode(root,callback)
+        postOrderTraverseNode(this.root, callback)
     }
     min() {
-
+        return minNode(this.root)
     }
     max() {
-
+        return maxNode(this.root)
     }
     remove(key) {
 
@@ -77,15 +77,51 @@ function printNode(value) {
 function preOrderTraverseNode(node, callback) {
     if (node !== null) {
         callback(node.key)
-        preOrderTraverseNode(node.left,callback)
-        preOrderTraverseNode(node.right,callback)
+        preOrderTraverseNode(node.left, callback)
+        preOrderTraverseNode(node.right, callback)
     }
 }
 
 function postOrderTraverseNode(node, callback) {
     if (node !== null) {
-        postOrderTraverseNode(node.left,callback)
-        postOrderTraverseNode(node.right,callback)
+        postOrderTraverseNode(node.left, callback)
+        postOrderTraverseNode(node.right, callback)
         callback(node.key)
+    }
+}
+
+
+function minNode(node) {
+    if (node) {
+        while (node && node.left !== null) {
+            node = node.left
+        }
+        return node.key
+    }
+    return null
+}
+
+
+function maxNode(node) {
+    if (node) {
+        while (node && node.right !== null) {
+            node = right.right
+        }
+        return node.key
+    }
+    return null
+}
+
+
+function searchNode(node, key) {
+    if (node === null) {
+        return false
+    }
+    if (key < node.key) {
+        return searchNode(node.left, key)
+    } else if (key > node.key) {
+        return searchNode(node.right, key)
+    } else {
+        return true
     }
 }
