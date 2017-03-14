@@ -939,10 +939,37 @@ class RedBlackBinaryTree {
     constructor() {
         this.rootNode = null
     }
-    insert(value) {
+    /*插入算法。分三种情况
+     注意：插入的节点统一为红色，且第一次查找位置的时候是利用二叉排序树的插入方式进行插入
+      再进行规整
+    * 1.往一个2-node节点底部插入新的节点
+        （1）如果新插入的节点在父节点的右子节点，则需要进行左旋操作
+    * 2.往一个3-node节点底部插入新的节点
+        （1）如果需要对4-node节点进行旋转操作
+        （2）如果需要，调用FlipColor方法将红色节点提升
+        （3）如果需要，左旋操作使红色节点左倾。
+        （4）在有些情况下，需要递归调用Case1 Case2，来进行递归操作。
+    * 3.插入节点作为根
+        不用做任何操作，根节点一定是红色
+    */
+    insert(parent = this.rootNode, key, value) {
         if (this.rootNode == null) {
-            this.rootNode = new Node(value,)
+            this.rootNode = new Node(key, value, 1, red)
         }
+        if (key < parent.key) {
+            parent.left = this.insert(parent.left, key, value);
+        } else if (key > parent.key) {
+            parent.right = this.insert(parent.right, key, value);
+        } else {
+            parent.value = value
+        }
+        //平衡化
+        if (IsRed(parent.right) && !IsRed(parent.left)) parent = rotateLeft(parent);
+        if (IsRed(parent.right) && IsRed(parent.left.left)) parent = rotateRight(parent);
+        if (IsRed(parent.left) && IsRed(parent.right)) parent = flipColors(parent);
+
+        parent.number = size(parent.left) + size(parent.light) + 1;
+        return parent;
     }
 }
 
@@ -957,4 +984,42 @@ function IsRed(node) {
         return false
     }
     return node.color == red
+}
+
+
+function rotateLeft(node) {
+    var r = node.right
+    node.right = r.left
+    r.left = node
+    r.color = node.color
+    node.color = red
+    r.number = node.number
+    node.number = 1 + size(node.left) + size(node.right)
+    return x
+}
+
+
+function rotateRight(node) {
+    var l = node.left
+    node.left = l.right
+    l.right = node
+    l.color = node.color
+    node.color = red
+    l.number = node.number
+    node.number = 1 + size(node.left) + size(node.right)
+    return l
+}
+
+
+function flipColors(h) {
+    h.color = red
+    h.left.color = black
+    h.right.color = black
+    return h
+}
+
+
+function size(node) {
+    if (node == null) return 0;
+    return node.Number;
 }
