@@ -7,7 +7,7 @@
  * @param {int} end 
  * @returns 
  */
-function binarySearch(arr,dest,start,end) {
+function binarySearch(arr, dest, start, end) {
     var end = end || arr.length - 1,
         start = start || 0,
         middle = Math.floor((start + end) / 2);
@@ -21,4 +21,30 @@ function binarySearch(arr,dest,start,end) {
     }
 
     return false;
+}
+
+/**
+ * 非递归的方式实现二分查找
+ * 
+ * @param {Array} arr 
+ * @param {int} dest 
+ * @returns 
+ */
+function binarySearchv2(arr, dest) {
+    var l = 0,
+        r = arr.length - 1
+    middle = Math.floor((l + r) / 2)
+    while (l <= r) {
+        if (dest == arr[middle]) {
+            return middle
+        }
+        if (dest > middle) {
+            l = middle + 1 
+        } else {
+            r = middle - 1
+        }
+        middle = Math.floor((l + r) / 2)
+    }
+    return false
+
 }
