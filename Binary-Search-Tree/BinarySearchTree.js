@@ -1,3 +1,10 @@
+/**
+ * 二叉查找树查找
+ * 
+ * @param {any} node 
+ * @param {any} dest 
+ * @returns 
+ */
 function binarySearchTree(node, dest) {
     if (node == null) {
         return false
