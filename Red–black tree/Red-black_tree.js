@@ -158,10 +158,13 @@ function RedBlackTree() {//这是红黑树代码，其它代码请下载。
         return temp;
     };
     var insertNode = function(node, element) {
+        //插入的节点都是红色
         if (node === null) {
             return new Node(element, Colors.RED);
         }
         var newRoot = node;
+
+        //按照 二叉查找树树的方式去查找插入点
         if (element < node.key) {
             node.left = insertNode(node.left, element);
         } else if (element > node.key) {
@@ -169,6 +172,7 @@ function RedBlackTree() {//这是红黑树代码，其它代码请下载。
         } else {
             node.key = element;
         }
+        //插入后判断父节点是否要旋转
         if (isRed(node.right) && !isRed(node.left)) {
             newRoot = rotateLeft(node);
         }
