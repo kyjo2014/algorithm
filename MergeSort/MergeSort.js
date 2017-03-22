@@ -11,7 +11,7 @@ function mergeSort(arr) {
     if (len < 2) {
         return arr
     }
-    return mergeSort(mergeSort(left), mergeSort(right))
+    return merge(mergeSort(left), mergeSort(right))
 
 
 }
@@ -22,7 +22,7 @@ function merge(left, right) {
         if (left[0] <= right[0]) {
             result.push(left.shift())
         } else {
-            result.push(right.push())
+            result.push(right.shift())
         }
     }
     while (left.length) {
